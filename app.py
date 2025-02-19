@@ -23,7 +23,7 @@ except LookupError:
 
 
 ###################################
-# 1. Define your helper functions #
+# 1. Define helper functions
 ###################################
 
 def fetch_text_newspaper(url):
