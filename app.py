@@ -8,7 +8,8 @@ import requests
 from bs4 import BeautifulSoup
 from newspaper import Article
 
-# Download NLTK data if needed (comment out if already downloaded)
+# If needed, uncomment these lines to ensure NLTK data is available in your environment:
+# import nltk
 # nltk.download('punkt')
 # nltk.download('stopwords')
 
@@ -34,8 +35,7 @@ def fetch_text_fallback(url):
     response.raise_for_status()  # Raises an error for non-200 status
     soup = BeautifulSoup(response.text, "html.parser")
     # Basic text extraction (may include headers, footers, etc.)
-    text = soup.get_text(separator=" ", strip=True)
-    return text
+    return soup.get_text(separator=" ", strip=True)
 
 def fetch_text_from_url(url):
     """
@@ -64,7 +64,7 @@ def preprocess_text(text):
     return " ".join(tokens)
 
 ##############################################
-# 2. Load your pre-trained model and vectorizer #
+# 2. Load your pre-trained model & vectorizer
 ##############################################
 
 with open("vectorizer.pkl", "rb") as vf:
@@ -74,7 +74,7 @@ with open("model.pkl", "rb") as mf:
     model = pickle.load(mf)
 
 #####################################
-# 3. Build the Streamlit application #
+# 3. Build the Streamlit application
 #####################################
 
 st.title("Fake News Detection with URL Parsing")
@@ -82,8 +82,8 @@ st.title("Fake News Detection with URL Parsing")
 st.sidebar.header("About")
 st.sidebar.info(
     "This demo uses a Logistic Regression model trained on English news data. "
-    "We use newspaper3k to extract main article text and then apply the same preprocessing "
-    "pipeline used during training."
+    "We use newspaper3k to extract main article text and then apply the same "
+    "preprocessing pipeline used during training."
 )
 
 # Text input for URLs
@@ -103,11 +103,9 @@ if st.button("Fetch & Check"):
             # 3. Vectorize and predict
             input_vector = vectorizer.transform([processed_text])
             prediction_proba = model.predict_proba(input_vector)[0]
-            prob_fake = prediction_proba[0]
-            prob_real = prediction_proba[1]
+            prob_fake, prob_real = prediction_proba
 
             # 4. Apply a custom threshold (optional)
-            #    For example, we can say if prob_real >= 0.6 => "REAL", else "FAKE"
             threshold = 0.60
             if prob_real >= threshold:
                 st.success(f"This news seems REAL! (Confidence: {prob_real:.2f})")
