@@ -1,6 +1,7 @@
-numpy
-pandas
-scikit-learn
-nltk
-tqdm
-streamlit
+streamlit==1.18.1
+scikit-learn==1.2.1
+newspaper3k==0.2.8
+nltk==3.7
+numpy==1.24.1
+pandas==1.5.3
+joblib==1.2.0
