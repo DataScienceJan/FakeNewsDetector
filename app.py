@@ -7,11 +7,20 @@ import pickle
 import requests
 from bs4 import BeautifulSoup
 from newspaper import Article
+import nltk
 
-# If needed, uncomment these lines to ensure NLTK data is available in your environment:
-# import nltk
-# nltk.download('punkt')
-# nltk.download('stopwords')
+# Try to find 'punkt' tokenizer, else download
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt")
+
+# Try to find 'stopwords', else download
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords")
+
 
 ###################################
 # 1. Define your helper functions #
