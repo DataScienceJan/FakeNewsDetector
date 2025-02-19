@@ -62,7 +62,7 @@ def fetch_text_from_url(url):
 
 def preprocess_text(text):
     """
-    Converts text to lowercase, tokenizes, removes stopwords, 
+    Converts text to lowercase, tokenizes, removes stopwords,
     and keeps only alphanumeric tokens (e.g., 'covid19', '2025').
     """
     text = str(text).lower()
