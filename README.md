@@ -55,3 +55,63 @@ The goal of this project is to showcase an end-to-end NLP pipeline for detecting
    ```bash
    git clone https://github.com/<YourUsername>/fake_news_detector.git
    cd fake_news_detector
+
+   Install dependencies:
+
+bash
+Kopier
+pip install -r requirements.txt
+If you haven’t installed NLTK data locally, you may need:
+
+python
+Kopier
+import nltk
+nltk.download('punkt')
+(You can also download other corpora as needed.)
+
+(Optional) Create and activate a virtual environment:
+
+bash
+Kopier
+python -m venv venv
+source venv/bin/activate  # On macOS/Linux
+.\venv\Scripts\activate   # On Windows
+Usage
+Run the Streamlit app:
+bash
+Kopier
+streamlit run app.py
+Open your browser to the URL provided in the terminal (usually http://localhost:8501).
+Enter a news article URL and click "Fetch & Check" to see the prediction.
+Dataset
+We used Fake.csv and True.csv from Kaggle’s Fake News dataset (or a similar dataset).
+Make sure the dataset is included in your project folder (if allowed by license) or provide a link to where users can download it.
+Model Training
+Data Preparation:
+Combine and label real/fake data from CSVs.
+Clean and preprocess (remove punctuation, stopwords, etc.).
+Vectorization:
+Use CountVectorizer or TfidfVectorizer from scikit-learn.
+Train/Test Split:
+train_test_split for an 80/20 or 70/30 split.
+Model:
+Logistic Regression for simplicity.
+You can experiment with RandomForest or DistilBERT (transformers) for better performance.
+Evaluation:
+Accuracy, Precision, Recall, F1-score.
+Confusion matrix to visualize true vs. false predictions.
+Screenshots
+1. App Interface
+A screenshot of the Streamlit app predicting news authenticity.
+
+2. Example Output
+The app classifies the article as "REAL" or "FAKE" with a confidence score.
+
+License
+This project is licensed under the MIT License - feel free to modify and distribute as you see fit.
+(If your dataset has specific usage terms, add them here too.)
+
+Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Contact
